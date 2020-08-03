@@ -4,6 +4,8 @@ import Card from "./Card";
 function App() {
   setInterval(getTime, 1000);
 
+  const [BUTT, setBUTT] = useState(true);
+
   const [initSate, setSate] = useState(
     new Date().toLocaleTimeString().replace("AM", "").replace("PM", "")
   );
@@ -12,6 +14,7 @@ function App() {
 
   function handle(event) {
     setlist((prevItems) => {
+      setBUTT(!BUTT);
       var A = ReturnToNumber(initSate);
       var B = ReturnToNumber(prevItems[prevItems.length - 1].Started);
 
@@ -38,12 +41,15 @@ function App() {
 
   return (
     <div>
-      <form>
+      <div className='formm'>
         <h1>{initSate}</h1>
-        <button onClick={handle}> Click Me </button>
-      </form>
+        <button onClick={handle}>
+          Press to {BUTT ? "Start Running" : "Take a break"}{" "}
+        </button>
+      </div>
 
       {list.map((element, index) => {
+        if (index < 1) return;
         return (
           <Card
             key={index}
