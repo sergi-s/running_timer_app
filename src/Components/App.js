@@ -3,9 +3,7 @@ import Card from "./Card";
 
 function App() {
   setInterval(getTime, 1000);
-
   const [BUTT, setBUTT] = useState(true);
-
   const [initSate, setSate] = useState(
     new Date().toLocaleTimeString().replace("AM", "").replace("PM", "")
   );
@@ -44,12 +42,13 @@ function App() {
       <div className='formm'>
         <h1>{initSate}</h1>
         <button onClick={handle}>
+          {" "}
           Press to {BUTT ? "Start Running" : "Take a break"}{" "}
         </button>
       </div>
 
       {list.map((element, index) => {
-        if (index < 1) return;
+        if (index < 1) return null;
         return (
           <Card
             key={index}
